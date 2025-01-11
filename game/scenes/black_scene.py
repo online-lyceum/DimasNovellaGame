@@ -1,8 +1,10 @@
 import pygame
 
+from game.UI.character import tioma
 from game.scenes.base_scene import BaseSceneController
 from game.settings import FPS
 from main import screen
+
 
 
 class BlackSceneController(BaseSceneController):
@@ -13,6 +15,7 @@ class BlackSceneController(BaseSceneController):
         while True:
             clock = pygame.time.Clock()
             screen.fill((0, 0, 0))
+            tioma.draw()
             pygame.display.update()
 
             for event in pygame.event.get():
