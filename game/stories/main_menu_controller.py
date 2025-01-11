@@ -100,7 +100,7 @@ class MainMenuStoryController(BaseStoryController):
     def __init__(self):
         super().__init__()
 
-    def game(self) -> BaseStoryController:
+    def game(self) -> BaseStoryController | None:
         menu = BaseMenu('привет', ['привет', 'пока'])
 
         while not menu.selected:
@@ -113,6 +113,7 @@ class MainMenuStoryController(BaseStoryController):
                 menu.process_event(event)
                 if event.type == pygame.QUIT:
                     pygame.quit()
+                    return None
 
             clock.tick(FPS)
         return MainMenuStoryController()
