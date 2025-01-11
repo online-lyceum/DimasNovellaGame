@@ -1,77 +1,15 @@
 import pygame
-from pygame import Surface
 from pygame.event import Event
 
 from game.media_data import big_font
-from game.media_data import small_font
+from game.scenes.base_scene_controller import BaseSceneController
 from game.settings import FPS
 from game.settings import HEIGHT
 from game.settings import WIDTH
-from game.scenes.base_story_controller import BaseSceneController
+from game.UI.button import Button
 
 pygame.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT), flags=pygame.FULLSCREEN)
-
-
-class TextBox:
-    def __init__(
-            self,
-            text,
-            *,
-            left_top: tuple[int, int] | None = None,
-            center: tuple[int, int] | None = None
-    ):
-        self.text = text
-        self.center = center
-        try:
-            self.rendered = small_font.render(text, True, (255, 255, 255))
-            self.text_rect = self.__create_text_rect(left_top, center)
-        except Exception as e:
-            raise ValueError(f'Error on creating TextBox({text=})') from e
-
-    def __create_text_rect(
-            self,
-            left_top: tuple[int, int] | None = None,
-            center: tuple[int, int] | None = None
-    ):
-        if center is not None:
-            return self.rendered.get_rect(
-                center=center
-            )
-        elif left_top is not None:
-            return self.rendered.get_rect(
-                topleft=left_top
-            )
-        else:
-            raise ValueError(f'Set left_top or center for TextBox')
-
-    def draw(self, on: Surface = screen):
-        on.blit(self.rendered, self.text_rect)
-
-
-class Button:
-    def __init__(
-            self,
-            text: str,
-            coords: tuple[int, int],
-            width=200,
-            height=100
-    ):
-        self.width = width
-        self.height = height
-        self.coords = coords
-        self.rect = pygame.Rect(*coords, width, height)
-        self.surface = pygame.Surface((width, height))
-        self.text_box = TextBox(
-            text, center=(
-                self.surface.get_width() // 2,
-                self.surface.get_height() // 2
-            )
-        )
-
-    def draw(self, on: Surface = screen):
-        self.text_box.draw(self.surface)
-        on.blit(self.surface, self.coords)
 
 
 class BaseMenu:
@@ -117,7 +55,7 @@ class BaseMenu:
 
     def draw_buttons(self):
         for button in self.buttons:
-            button.draw()
+            button.draw(screen)
 
     def draw(self):
         self.draw_title()
@@ -137,8 +75,6 @@ class BaseMenu:
             return BlackSceneController()
         if self.selected == 'пока':
             return pygame.quit()
-
-
 
 
 class MainMenuSceneController(BaseSceneController):
@@ -180,6 +116,3 @@ class BlackSceneController(BaseSceneController):
                     return
 
             clock.tick(FPS)
-
-
-
