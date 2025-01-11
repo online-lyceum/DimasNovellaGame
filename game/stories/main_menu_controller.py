@@ -40,15 +40,16 @@ class Button:
 
 
 class BaseMenu:
-    def __init__(self, text: str, buttons_text: list[str]):
-        self.title = big_font.render(text, True, (0, 0, 0))
+    def __init__(self, title: str, buttons_text: list[str]):
+        self.title = title
+        self.rendered_title = big_font.render(self.title, True, (0, 0, 0))
         self.space_between = 100
         self.space_bottom = 400
         self.button_width = 200
         self.button_height = 100
         self.selected = None
         self.buttons = []
-        coords = self.calculate_coordinates(len(buttons_text))
+        coords = self.calculate_buttons_coordinates(len(buttons_text))
         for i, button_text in enumerate(buttons_text):
             self.buttons.append(
                 Button(
@@ -59,7 +60,10 @@ class BaseMenu:
                 )
             )
 
-    def calculate_coordinates(self, button_count: int):
+    def calculate_title_coordinete(self):
+        self.title
+
+    def calculate_buttons_coordinates(self, button_count: int):
         match button_count:
             case 1:
                 return [(WIDTH // 2 - self.button_width // 2,
