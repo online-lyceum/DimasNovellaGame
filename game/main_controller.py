@@ -1,13 +1,15 @@
-from game.main_menu_controller import MainMenuStoryController
 import pygame
 
+from game.main_menu_controller import MainMenuStoryController
+from game.settings import FPS
 
 
 class MainController:
     def __init__(self):
         pass
 
-    def game_loop(self):
+    @staticmethod
+    def game_loop():
         active_story = MainMenuStoryController()
         while not active_story.is_end:
             active_story = active_story.game()
