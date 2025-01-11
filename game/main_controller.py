@@ -1,6 +1,6 @@
 import pygame
 
-from game.main_menu_controller import MainMenuStoryController
+from game.stories.main_menu_controller import MainMenuStoryController
 from game.settings import FPS
 
 
@@ -19,6 +19,7 @@ class MainController:
             pygame.display.update()
 
             for event in pygame.event.get():
+                active_story.process_event(event)
                 if event.type == pygame.QUIT:
                     pygame.quit()
 

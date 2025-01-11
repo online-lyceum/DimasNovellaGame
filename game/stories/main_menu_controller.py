@@ -89,14 +89,15 @@ class BaseMenu:
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             for button in self.buttons:
                 if button.rect.collidepoint(event.pos):
-                    pass
+                    self.selected = button.text
+                    return
 
 
 class MainMenuStoryController(BaseStoryController):
     def __init__(self):
         super().__init__()
 
-    def game(self):
+    def game(self) -> BaseStoryController:
         menu = BaseMenu('привет', ['привет', 'пока'])
 
         while not menu.selected:
@@ -106,7 +107,9 @@ class MainMenuStoryController(BaseStoryController):
             pygame.display.update()
 
             for event in pygame.event.get():
+                menu.process_event(event)
                 if event.type == pygame.QUIT:
                     pygame.quit()
 
             clock.tick(FPS)
+        return MainMenuStoryController()
