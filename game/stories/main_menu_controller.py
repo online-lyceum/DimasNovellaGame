@@ -12,6 +12,19 @@ pygame.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT), flags=pygame.FULLSCREEN)
 
 
+class TextBox:
+    def __init__(self, text, center: tuple[int, int]):
+        self.text = text
+        self.center = center
+        self.rendered = small_font.render(text, True, (255, 255, 255))
+        self.text_rect = self.rendered.get_rect(
+            center=center
+        )
+
+    def draw(self):
+        screen.blit(self.rendered, self.center)
+
+
 class Button:
     def __init__(
             self,
