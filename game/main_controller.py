@@ -1,5 +1,6 @@
-from base_story_controller import *
-from main_menu_controller import *
+from game.main_menu_controller import MainMenuStoryController
+import pygame
+
 
 
 class MainController:

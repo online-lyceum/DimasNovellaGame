@@ -1,9 +1,9 @@
 import pygame
 from pygame import FULLSCREEN
 
-from settings import *
+from game.settings import *
 
-from main_controller import MainController
+from game.main_controller import MainController
 
 
 pygame.init()

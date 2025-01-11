@@ -1,8 +1,8 @@
 from pygame.event import Event
 
-from base_story_controller import *
+from game.stories.base_story_controller import *
 from media_data import *
-from settings import *
+from game.settings import *
 
 pygame.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT), flags=pygame.FULLSCREEN)
