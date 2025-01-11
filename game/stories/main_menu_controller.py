@@ -26,8 +26,8 @@ class Button:
         self.coords = coords
         self.rect = pygame.Rect(*coords, width, height)
         self.surface = pygame.Surface((width, height))
-        self.rendered_font = small_font.render(text, True, (255, 255, 255))
-        self.text_rect = self.rendered_font.get_rect(
+        self.rendered_text = small_font.render(text, True, (255, 255, 255))
+        self.text_rect = self.rendered_text.get_rect(
             center=(
                 self.surface.get_width() // 2,
                 self.surface.get_height() // 2
@@ -35,7 +35,7 @@ class Button:
         )
 
     def draw(self):
-        self.surface.blit(self.rendered_font, self.text_rect)
+        self.surface.blit(self.rendered_text, self.text_rect)
         screen.blit(self.surface, self.coords)
 
 
@@ -61,7 +61,7 @@ class BaseMenu:
             )
 
     @staticmethod
-    def calculate_title_coordinete() -> tuple[int, int]:
+    def calculate_title_coordinate() -> tuple[int, int]:
         return 300, 100
 
     def calculate_buttons_coordinates(self, button_count: int):
@@ -78,7 +78,7 @@ class BaseMenu:
                      HEIGHT - self.button_height - self.space_bottom)]
 
     def draw_title(self):
-        screen.blit(self.rendered_title, self.calculate_title_coordinete())
+        screen.blit(self.rendered_title, self.calculate_title_coordinate())
 
     def draw_buttons(self):
         for button in self.buttons:
@@ -101,7 +101,7 @@ class MainMenuStoryController(BaseStoryController):
         super().__init__()
 
     def game(self) -> BaseStoryController | None:
-        menu = BaseMenu('привет', ['привет', 'пока'])
+        menu = BaseMenu('привет', ['привет'])
 
         while not menu.selected:
             clock = pygame.time.Clock()
@@ -113,7 +113,7 @@ class MainMenuStoryController(BaseStoryController):
                 menu.process_event(event)
                 if event.type == pygame.QUIT:
                     pygame.quit()
-                    return None
+                    return
 
             clock.tick(FPS)
         return MainMenuStoryController()
