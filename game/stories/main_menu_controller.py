@@ -1,12 +1,12 @@
 import pygame
 from pygame.event import Event
-from pygame.examples.moveit import WIDTH
 
-from game.settings import FPS
-from game.settings import HEIGHT
-from game.stories.base_story_controller import BaseStoryController
 from game.media_data import big_font
 from game.media_data import small_font
+from game.settings import FPS
+from game.settings import HEIGHT
+from game.settings import WIDTH
+from game.stories.base_story_controller import BaseStoryController
 
 pygame.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT), flags=pygame.FULLSCREEN)
@@ -44,7 +44,7 @@ class BaseMenu:
         self.title = title
         self.rendered_title = big_font.render(self.title, True, (0, 0, 0))
         self.space_between = 100
-        self.space_bottom = 400
+        self.space_bottom = 100
         self.button_width = 200
         self.button_height = 100
         self.selected = None
@@ -73,9 +73,9 @@ class BaseMenu:
             case 2:
                 return [
                     (WIDTH // 2 - self.button_width - self.space_between // 2,
-                     HEIGHT // 2 - self.button_height - self.space_bottom),
+                     HEIGHT - self.button_height - self.space_bottom),
                     (WIDTH // 2 + self.button_width + self.space_between // 2,
-                     HEIGHT // 2 - self.button_height - self.space_bottom)]
+                     HEIGHT - self.button_height - self.space_bottom)]
 
     def draw_title(self):
         screen.blit(self.rendered_title, self.calculate_title_coordinete())
