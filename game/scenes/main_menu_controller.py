@@ -7,7 +7,7 @@ from game.media_data import small_font
 from game.settings import FPS
 from game.settings import HEIGHT
 from game.settings import WIDTH
-from game.stories.base_story_controller import BaseStoryController
+from game.scenes.base_story_controller import BaseSceneController
 
 pygame.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT), flags=pygame.FULLSCREEN)
@@ -132,20 +132,20 @@ class BaseMenu:
 
     def draw_scene(self):
         if self.selected == '':
-            return MainMenuStoryController()
+            return MainMenuSceneController()
         if self.selected == 'играть':
-            return BlackStoryController()
+            return BlackSceneController()
         if self.selected == 'пока':
             return pygame.quit()
 
 
 
 
-class MainMenuStoryController(BaseStoryController):
+class MainMenuSceneController(BaseSceneController):
     def __init__(self):
         super().__init__()
 
-    def game(self) -> BaseStoryController | None:
+    def game(self) -> BaseSceneController | None:
         menu = BaseMenu('привет', ['играть', 'пока'])
 
         while not menu.selected:
@@ -164,11 +164,11 @@ class MainMenuStoryController(BaseStoryController):
         return menu.draw_scene()
 
 
-class BlackStoryController(BaseStoryController):
+class BlackSceneController(BaseSceneController):
     def __init__(self):
         super().__init__()
 
-    def game(self) -> BaseStoryController | None:
+    def game(self) -> BaseSceneController | None:
         while True:
             clock = pygame.time.Clock()
             screen.fill((0, 0, 0))
