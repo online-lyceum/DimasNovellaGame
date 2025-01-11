@@ -2,7 +2,8 @@ import pygame
 from pygame.event import Event
 
 from game.media_data import big_font
-from game.scenes.base_scene_controller import BaseSceneController
+from game.scenes.base_scene import BaseSceneController
+from game.scenes.black_scene import BlackSceneController
 from game.settings import FPS
 from game.settings import HEIGHT
 from game.settings import WIDTH
@@ -98,21 +99,3 @@ class MainMenuSceneController(BaseSceneController):
 
             clock.tick(FPS)
         return menu.draw_scene()
-
-
-class BlackSceneController(BaseSceneController):
-    def __init__(self):
-        super().__init__()
-
-    def game(self) -> BaseSceneController | None:
-        while True:
-            clock = pygame.time.Clock()
-            screen.fill((0, 0, 0))
-            pygame.display.update()
-
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-                    return
-
-            clock.tick(FPS)

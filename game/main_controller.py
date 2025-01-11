@@ -1,6 +1,6 @@
 import pygame
 
-from game.scenes.main_menu_controller import MainMenuSceneController
+from game.scenes.main_menu_scene import MainMenuSceneController
 
 
 class MainController:
