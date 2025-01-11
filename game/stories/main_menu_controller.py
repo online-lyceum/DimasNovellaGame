@@ -60,8 +60,9 @@ class BaseMenu:
                 )
             )
 
-    def calculate_title_coordinete(self):
-        self.title
+    @staticmethod
+    def calculate_title_coordinete() -> tuple[int, int]:
+        return 300, 100
 
     def calculate_buttons_coordinates(self, button_count: int):
         match button_count:
@@ -77,9 +78,7 @@ class BaseMenu:
                      HEIGHT // 2 - self.button_height - self.space_bottom)]
 
     def draw_title(self):
-        title_coordinate = (300, 100)
-
-        screen.blit(self.title, title_coordinate)
+        screen.blit(self.rendered_title, self.calculate_title_coordinete())
 
     def draw_buttons(self):
         for button in self.buttons:
