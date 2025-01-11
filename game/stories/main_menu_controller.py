@@ -82,7 +82,7 @@ class BaseMenu:
         self.space_bottom = 100
         self.button_width = 200
         self.button_height = 100
-        self.selected = None
+        self.selected = ''
         self.buttons = []
         coords = self.calculate_buttons_coordinates(len(buttons_text))
         for i, button_text in enumerate(buttons_text):
@@ -130,13 +130,23 @@ class BaseMenu:
                     self.selected = button.text_box.text
                     return
 
+    def draw_scene(self):
+        if self.selected == '':
+            return MainMenuStoryController()
+        if self.selected == 'играть':
+            return BlackStoryController()
+        if self.selected == 'пока':
+            return pygame.quit()
+
+
+
 
 class MainMenuStoryController(BaseStoryController):
     def __init__(self):
         super().__init__()
 
     def game(self) -> BaseStoryController | None:
-        menu = BaseMenu('привет', ['привет'])
+        menu = BaseMenu('привет', ['играть', 'пока'])
 
         while not menu.selected:
             clock = pygame.time.Clock()
@@ -151,4 +161,25 @@ class MainMenuStoryController(BaseStoryController):
                     return
 
             clock.tick(FPS)
-        return MainMenuStoryController()
+        return menu.draw_scene()
+
+
+class BlackStoryController(BaseStoryController):
+    def __init__(self):
+        super().__init__()
+
+    def game(self) -> BaseStoryController | None:
+        while True:
+            clock = pygame.time.Clock()
+            screen.fill((0, 0, 0))
+            pygame.display.update()
+
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    return
+
+            clock.tick(FPS)
+
+
+
