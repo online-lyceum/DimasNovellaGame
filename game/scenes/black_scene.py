@@ -1,21 +1,20 @@
 import pygame
+from pygame import Surface
 
-from game.UI.character import tioma
-from game.scenes.base_scene import BaseSceneController
+from game.UI.character import tioma_center
+from game.scenes.base_scene import BaseScene
 from game.settings import FPS
-from main import screen
 
 
+class BlackScene(BaseScene):
+    def __init__(self, screen: Surface):
+        super().__init__(screen)
 
-class BlackSceneController(BaseSceneController):
-    def __init__(self):
-        super().__init__()
-
-    def game(self) -> BaseSceneController | None:
+    def game(self) -> BaseScene | None:
         while True:
             clock = pygame.time.Clock()
-            screen.fill((0, 0, 0))
-            tioma.draw()
+            self.screen.fill((250, 150, 150))
+            tioma_center.draw(self.screen)
             pygame.display.update()
 
             for event in pygame.event.get():
