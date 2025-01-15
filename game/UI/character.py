@@ -1,7 +1,7 @@
 import pygame
 from pygame import Surface
 
-from game.media_data import t_0, t_b
+from game.media_data import *
 
 coords = {
     'left': (110, 280),
