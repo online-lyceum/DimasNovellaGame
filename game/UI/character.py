@@ -21,12 +21,12 @@ class Character:
         on.blit(self.texture, self.pos)
 
 
-tioma_0 = {
-    'left': Character('Тёма', t_0, coords['left']),
-    'left-center': Character('Тёма', t_0, coords['left-center']),
-    'center': Character('Тёма', t_0, coords['center']),
-    'right-center': Character('Тёма', t_0, coords['right-center']),
-    'right': Character('Тёма', t_0, coords['right'])
+tioma_o = {
+    'left': Character('Тёма', t_o, coords['left']),
+    'left-center': Character('Тёма', t_o, coords['left-center']),
+    'center': Character('Тёма', t_o, coords['center']),
+    'right-center': Character('Тёма', t_o, coords['right-center']),
+    'right': Character('Тёма', t_o, coords['right'])
 }
 
 tioma_b = {

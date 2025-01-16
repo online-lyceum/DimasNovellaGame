@@ -12,7 +12,7 @@ class MainMenuScene(BaseScene):
         super().__init__(screen)
 
     def game(self) -> BaseScene | None:
-        menu = Menu('НОВЕЛЛКА', ['играть', 'пока', 'hui', 'pizda'])
+        menu = Menu('ШНЯЖНЫЕ', ['Играть', 'Выход'])
 
         while not menu.selected:
             clock = pygame.time.Clock()
@@ -28,9 +28,9 @@ class MainMenuScene(BaseScene):
 
             clock.tick(FPS)
 
-        if menu.selected in ('', 'pizda', 'hui'):
+        if menu.selected == '':
             return MainMenuScene(self.screen)
-        if menu.selected == 'играть':
+        if menu.selected == 'Играть':
             return BlackScene(self.screen)
-        if menu.selected == 'пока':
+        if menu.selected == 'Выход':
             return pygame.quit()

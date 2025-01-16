@@ -12,7 +12,7 @@ small_font = pygame.font.SysFont(None, 50)
 # ПЕРСОНАЖИ
 
 # тёма
-t_0 = pygame.image.load('game/media/characters/тёма обычный.png')
+t_o = pygame.image.load('game/media/characters/тёма обычный.png')
 t_b = pygame.image.load('game/media/characters/тёма бабайка.png')
 t_v = pygame.image.load('game/media/characters/тёма весёлый.png')
 t_g = pygame.image.load('game/media/characters/тёма грусть.png')
