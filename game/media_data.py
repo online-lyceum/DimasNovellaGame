@@ -6,8 +6,8 @@ pygame.init()
 
 # ШРИФТЫ
 
-big_font = pygame.font.SysFont(None, 90)
-small_font = pygame.font.SysFont(None, 50)
+big_font = pygame.font.Font('game/media/other/Lilita One Regular.ttf', 90)
+small_font = pygame.font.Font('game/media/other/Lilita One Regular.ttf', 50)
 
 # ПЕРСОНАЖИ
 
