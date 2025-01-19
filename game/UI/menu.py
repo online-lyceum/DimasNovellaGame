@@ -17,7 +17,7 @@ class Menu:
         self.button_width = 300
         self.button_height = 100
         self.selected = ''
-        self.buttons = []
+        self.buttons: list[Button] = []
         coords = self.calculate_buttons_coordinates(len(buttons_text))
         for i, button_text in enumerate(buttons_text):
             self.buttons.append(
