@@ -6,28 +6,30 @@ from game.UI.backgrounds import mahutov_room
 from game.UI.storytelling import Storytelling
 from game.scenes.base_scene import BaseScene
 from game.settings import FPS
-from game.storys_data import story_black
-
+from game.storys_data import *
 
 class BlackScene(BaseScene):
     def __init__(self, screen: Surface):
         super().__init__(screen)
 
     def game(self) -> BaseScene | None:
-        while True:
+        story_1 = Storytelling(story_black_1)
+        while not story_1.is_end:
             clock = pygame.time.Clock()
-            story = Storytelling(story_black)
 
             mahutov_room.draw(self.screen)
-            tioma_o['right-center'].draw(self.screen)
-
-#            story.telling(self.screen)
+            tioma_o['left-center'].draw(self.screen)
+            story_1.draw(self.screen)
 
             pygame.display.update()
 
             for event in pygame.event.get():
+                story_1.process_event(event)
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     return
 
             clock.tick(FPS)
+
+        from game.scenes.main_menu_scene import MainMenuScene
+        return MainMenuScene(self.screen)

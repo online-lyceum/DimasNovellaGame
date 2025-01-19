@@ -28,8 +28,6 @@ class MainMenuScene(BaseScene):
 
             clock.tick(FPS)
 
-        if menu.selected == '':
-            return MainMenuScene(self.screen)
         if menu.selected == 'Играть':
             return BlackScene(self.screen)
         if menu.selected == 'Выход':
