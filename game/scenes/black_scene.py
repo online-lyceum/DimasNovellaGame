@@ -3,33 +3,44 @@ from pygame import Surface
 
 from game.UI.character import tioma_o, tioma_b
 from game.UI.backgrounds import mahutov_room
+from game.UI.replicas_loader import ReplicasLoader
 from game.UI.storytelling import Storytelling
 from game.scenes.base_scene import BaseScene
 from game.settings import FPS
-from game.storys_data import *
+
 
 class BlackScene(BaseScene):
     def __init__(self, screen: Surface):
         super().__init__(screen)
 
     def game(self) -> BaseScene | None:
-        story_1 = Storytelling(story_black_1)
-        while not story_1.is_end:
-            clock = pygame.time.Clock()
+        loader = ReplicasLoader('./game/replicas/black_story')
+        story_listings = []
+        for speaker, replica in loader.replicas:
+            story_listings.append(Storytelling(speaker, replica))
 
-            mahutov_room.draw(self.screen)
-            tioma_o['left-center'].draw(self.screen)
-            story_1.draw(self.screen)
+        for active_story_listing in story_listings:
+            while not active_story_listing.is_end:
+                clock = pygame.time.Clock()
 
-            pygame.display.update()
+                mahutov_room.draw(self.screen)
 
-            for event in pygame.event.get():
-                story_1.process_event(event)
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-                    return
+                if active_story_listing.speaker == 'pidor':
+                    tioma_o['left-center'].draw(self.screen)
+                if active_story_listing.speaker == 'pidor2':
+                    tioma_b['right-center'].draw(self.screen)
 
-            clock.tick(FPS)
+                active_story_listing.draw(self.screen)
+
+                pygame.display.update()
+
+                for event in pygame.event.get():
+                    active_story_listing.process_event(event)
+                    if event.type == pygame.QUIT:
+                        pygame.quit()
+                        return
+
+                clock.tick(FPS)
 
         from game.scenes.main_menu_scene import MainMenuScene
         return MainMenuScene(self.screen)
