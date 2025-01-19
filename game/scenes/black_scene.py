@@ -1,12 +1,16 @@
 import pygame
 from pygame import Surface
 
-from game.UI.character import tioma_o, tioma_b
-from game.UI.backgrounds import mahutov_room
-from game.UI.storytelling import Storytelling
 from game.scenes.base_scene import BaseScene
+from game.scenes.server_room import secret_server_room_event_process
+from game.scenes.server_room import ServerRoomScene
 from game.settings import FPS
 from game.storys_data import *
+from game.UI.backgrounds import mahutov_room
+from game.UI.blackout import Blackout
+from game.UI.character import tioma_o
+from game.UI.storytelling import Storytelling
+
 
 class BlackScene(BaseScene):
     def __init__(self, screen: Surface):
@@ -25,6 +29,10 @@ class BlackScene(BaseScene):
 
             for event in pygame.event.get():
                 story_1.process_event(event)
+                if secret_server_room_event_process(event):
+                    blackout = Blackout(secs=1)
+                    blackout.start(self.screen)
+                    return ServerRoomScene(self.screen)
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     return
