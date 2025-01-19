@@ -20,13 +20,13 @@ class ServerRoomScene(BaseScene):
     def game(self) -> BaseScene | None:
         story_1 = Storytelling(story_black_1)
         blackout = Blackout(secs=1)
-        while not story_1.is_end:
-            clock = pygame.time.Clock()
-
+        clock = pygame.time.Clock()
+        while not blackout.is_end:
             self.screen.fill('red')
-
             blackout.reverse_draw(self.screen)
-
+            pygame.display.update()
+        while not story_1.is_end:
+            self.screen.fill('red')
             pygame.display.update()
 
             for event in pygame.event.get():
