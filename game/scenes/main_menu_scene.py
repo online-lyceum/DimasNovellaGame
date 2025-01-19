@@ -1,6 +1,7 @@
 import pygame
 from pygame import Surface
 
+from game.media_data import main_menu
 from game.scenes.base_scene import BaseScene
 from game.scenes.black_scene import BlackScene
 from game.settings import FPS
@@ -16,7 +17,7 @@ class MainMenuScene(BaseScene):
 
         while not menu.selected:
             clock = pygame.time.Clock()
-            self.screen.fill((255, 255, 255))
+            self.screen.blit(main_menu, (0, 0))
             menu.draw(self.screen)
             pygame.display.update()
 

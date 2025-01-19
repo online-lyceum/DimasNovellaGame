@@ -23,5 +23,6 @@ t_s = pygame.image.load('game/media/characters/тёма смешной.png')
 
 # ЗАДНИЕ ФОНЫ
 
+main_menu = pygame.image.load('game/media/backgrounds/главное меню.jpg')
 m_room = pygame.image.load('game/media/backgrounds/комната сани.jpg')
 
