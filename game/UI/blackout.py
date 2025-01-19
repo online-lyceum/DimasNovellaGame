@@ -25,6 +25,10 @@ class Blackout:
             pygame.display.update()
             clock.tick(FPS)
 
+    @property
+    def is_end(self):
+        return self._ticks >= self._total_ticks
+
     def reset(self):
         self._ticks = 0
 

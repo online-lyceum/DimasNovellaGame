@@ -19,7 +19,7 @@ def secret_server_room_event_process(event: Event) -> bool:
 class ServerRoomScene(BaseScene):
     def game(self) -> BaseScene | None:
         story_1 = Storytelling(story_black_1)
-        blackout = Blackout()
+        blackout = Blackout(secs=1)
         while not story_1.is_end:
             clock = pygame.time.Clock()
 
