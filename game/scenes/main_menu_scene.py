@@ -3,7 +3,7 @@ from pygame import Surface
 
 from game.media_data import main_menu
 from game.scenes.base_scene import BaseScene
-from game.scenes.black_scene import BlackScene
+from game.scenes.check_scene import CheckScene
 from game.settings import FPS
 from game.UI.menu import Menu
 
@@ -30,6 +30,6 @@ class MainMenuScene(BaseScene):
             clock.tick(FPS)
 
         if menu.selected == 'Играть':
-            return BlackScene(self.screen)
+            return CheckScene(self.screen)
         if menu.selected == 'Выход':
             return pygame.quit()
