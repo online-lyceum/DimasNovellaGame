@@ -2,12 +2,17 @@ import pygame
 
 
 pygame.init()
+pygame.mixer.init()
 
 
 # ШРИФТЫ
 
 big_font = pygame.font.Font('game/media/other/Lilita One Regular.ttf', 90)
-small_font = pygame.font.Font('game/media/other/Lilita One Regular.ttf', 50)
+small_font = pygame.font.Font('game/media/other/Lilita One Regular.ttf', 45)
+
+
+# ЗВУКИ
+zevota = pygame.mixer.Sound('game/media/sounds/zevota.mp3')
 
 
 # ПЕРСОНАЖИ

@@ -8,6 +8,7 @@ from game.UI.storytelling import Storytelling
 from game.scenes.base_scene import BaseScene
 from game.settings import FPS
 from game.UI.blackout import Blackout
+from game.media_data import zevota
 
 
 class CheckScene(BaseScene):
@@ -24,12 +25,15 @@ class CheckScene(BaseScene):
             while not active_story_listing.is_end:
                 clock = pygame.time.Clock()
 
-                self.screen.fill((0, 0, 0))
+                self.screen.fill((250, 0, 0))
 
 #                if active_story_listing.speaker == 'pidor':
 #                    tioma_o['left-center'].draw(self.screen)
 #                if active_story_listing.speaker == 'pidor2':
 #                    tioma_b['right-center'].draw(self.screen)
+
+#                if active_story_listing.replica == 'А заавтрааа':
+#                    zevota.play()
 
                 active_story_listing.draw(self.screen)
 

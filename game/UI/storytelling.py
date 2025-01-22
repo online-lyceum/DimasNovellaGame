@@ -11,7 +11,7 @@ class Storytelling:
         self.speaker = speaker
         self.story = story
         self.current_text_index = 0
-        self.coords = (460, 800)
+        self.coords = (160, 800)
         self.ticks_count = 0
         self.is_end = False
 
@@ -29,7 +29,7 @@ class Storytelling:
                 60
             )
         )
-        surface = pygame.Surface((1000, 250))
+        surface = pygame.Surface((1600, 250))
         text_box_title.draw(surface)
         text_box_text.draw(surface)
         on.blit(surface, self.coords)
